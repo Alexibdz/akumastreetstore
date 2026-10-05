@@ -1,0 +1,84 @@
+@import "tailwindcss";
+
+/* Paleta de Akuma Street. Se reemplaza la de Tailwind para no usar colores fuera del sistema. */
+@theme {
+  --color-*: initial;
+  --color-black: #000;
+  --color-white: #fff;
+  --color-ink: #0b0b0b; /* fondo */
+  --color-panel: #141414; /* superficie */
+  --color-panel-2: #161616;
+  --color-line: #222; /* líneas */
+  --color-line-2: #333; /* bordes de chips / inputs */
+  --color-bone: #f4f2ee; /* texto */
+  --color-muted: #8a8780; /* texto secundario */
+  --color-red: #e0402f; /* CTA, precios, ofertas */
+  --color-green: #4fbf8f; /* links, WhatsApp, kanji */
+  --color-offer-line: #2a1512;
+}
+
+@theme inline {
+  --font-display: var(--font-dela), sans-serif;
+  --font-sans: var(--font-archivo), sans-serif;
+  --font-mono: var(--font-jetbrains), monospace;
+}
+
+/* Padding lateral de todas las secciones */
+@utility px-gutter {
+  padding-inline: clamp(20px, 4vw, 48px);
+}
+
+/* Fondo rayado de las imágenes que todavía no tienen foto (igual que la referencia) */
+@utility bg-placeholder {
+  background: repeating-linear-gradient(135deg, #161616 0 10px, #1d1d1d 10px 20px);
+}
+
+/* Contorno del kanji del hero */
+@utility text-outline-green {
+  color: transparent;
+  -webkit-text-stroke: 2px var(--color-green);
+}
+
+/* Controles de formulario del panel */
+@utility campo {
+  width: 100%;
+  background: var(--color-ink);
+  border: 1px solid var(--color-line-2);
+  color: var(--color-bone);
+  padding: 10px 12px;
+  font-size: 14px;
+  outline: none;
+  &:focus {
+    border-color: var(--color-green);
+  }
+  &::placeholder {
+    color: var(--color-muted);
+  }
+  &:disabled {
+    opacity: 0.5;
+  }
+}
+
+@layer base {
+  html {
+    color-scheme: dark;
+  }
+  body {
+    background: var(--color-ink);
+    color: var(--color-bone);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+  }
+  ::selection {
+    background: var(--color-red);
+    color: var(--color-white);
+  }
+  :focus-visible {
+    outline: 2px solid var(--color-green);
+    outline-offset: 2px;
+  }
+  /* El selector de fecha/mes nativo en blanco sobre fondo oscuro */
+  input::-webkit-calendar-picker-indicator {
+    filter: invert(0.8);
+  }
+}
