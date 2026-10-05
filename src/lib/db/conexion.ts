@@ -2,12 +2,13 @@ import "server-only";
 import Database from "better-sqlite3";
 import fs from "node:fs";
 import path from "node:path";
+import { BASE_DEMO, CARPETA_DATOS, DISCO_SOLO_LECTURA } from "@/lib/disco";
 import { cargarSemilla } from "./semilla";
 
-// Base local SQLite en ./data/akuma.db (o DATABASE_PATH).
+// Base local SQLite en ./data/akuma.db (o DATABASE_PATH). En Vercel, una copia de demo/akuma.db en /tmp.
 // Toda la app accede a los datos por las funciones de src/lib/db/*: para pasar a Supabase
 // se reescriben esos módulos y el resto queda igual.
-const DB_PATH = process.env.DATABASE_PATH || path.join(/*turbopackIgnore: true*/ process.cwd(), "data", "akuma.db");
+const DB_PATH = process.env.DATABASE_PATH || path.join(/*turbopackIgnore: true*/ CARPETA_DATOS, "akuma.db");
 
 const ESQUEMA = `
 CREATE TABLE IF NOT EXISTS productos (
@@ -102,8 +103,12 @@ const cache = globalThis as unknown as { __akumaDb?: Database.Database };
 /** Conexión única (en desarrollo Next recarga módulos: se guarda en globalThis). */
 export function db(): Database.Database {
   if (!cache.__akumaDb) {
-    const nueva = !fs.existsSync(DB_PATH);
+    let nueva = !fs.existsSync(DB_PATH);
     fs.mkdirSync(path.dirname(DB_PATH), { recursive: true });
+    if (nueva && DISCO_SOLO_LECTURA && fs.existsSync(BASE_DEMO)) {
+      fs.copyFileSync(BASE_DEMO, DB_PATH);
+      nueva = false;
+    }
     const conexion = new Database(DB_PATH);
     conexion.pragma("journal_mode = WAL");
     conexion.pragma("foreign_keys = ON");

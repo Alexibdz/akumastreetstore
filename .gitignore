@@ -43,3 +43,6 @@ next-env.d.ts
 
 # base de datos local
 /data
+
+# copia de la base que usa la web publicada (demo); solo se sube el .db
+/demo/*.db-*

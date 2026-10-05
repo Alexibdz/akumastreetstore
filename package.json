@@ -7,7 +7,8 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint",
-    "db:reset": "node -e \"for (const f of ['akuma.db','akuma.db-wal','akuma.db-shm']) require('fs').rmSync('data/'+f,{force:true}); console.log('Base borrada: se vuelve a crear con datos de ejemplo al abrir la web')\""
+    "db:reset": "node -e \"for (const f of ['akuma.db','akuma.db-wal','akuma.db-shm']) require('fs').rmSync('data/'+f,{force:true}); console.log('Base borrada: se vuelve a crear con datos de ejemplo al abrir la web')\"",
+    "db:demo": "node scripts/guardar-demo.mjs"
   },
   "dependencies": {
     "better-sqlite3": "^13.0.3",

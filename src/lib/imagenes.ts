@@ -4,10 +4,11 @@ import fs from "node:fs/promises";
 import path from "node:path";
 import sharp from "sharp";
 import { ErrorNegocio } from "./db/errores";
+import { CARPETA_DATOS } from "./disco";
 
 // Fotos subidas desde el panel. Se guardan en ./data/uploads (o UPLOADS_PATH) y se sirven en /uploads/<archivo>.
 // Con Supabase esto pasaría a Supabase Storage.
-const CARPETA = process.env.UPLOADS_PATH || path.join(/*turbopackIgnore: true*/ process.cwd(), "data", "uploads");
+const CARPETA = process.env.UPLOADS_PATH || path.join(/*turbopackIgnore: true*/ CARPETA_DATOS, "uploads");
 const MAX_BYTES = 15 * 1024 * 1024;
 const NOMBRE_VALIDO = /^[a-f0-9-]{36}\.webp$/;
 

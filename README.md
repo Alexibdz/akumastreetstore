@@ -45,6 +45,7 @@ El botón CONSULTAR abre `https://wa.me/<número>?text=Hola! Quiero consultar po
 ## Datos
 
 - **Base:** `data/akuma.db` (SQLite) y las fotos en `data/uploads/`. La carpeta `data/` no se sube a git.
+- **Demo:** `demo/akuma.db` es una copia de la base que sí se sube. Es con la que arranca la web publicada (ver abajo). Para actualizarla con lo que tenés en tu base local: `npm run db:demo` y subir el cambio.
 - **Datos de ejemplo:** la primera vez se carga con 20 productos de ejemplo, 60 días de ventas y gastos simulados.
 - **Fotos de ejemplo:** están en `public/demo/` (Creative Commons, con autores en `public/demo/CREDITOS.md`). Reemplazalas por fotos propias desde el panel.
 - **Empezar de cero:** **Configuración → Borrar ventas, gastos y movimientos** deja los productos. Si querés volver a la base de ejemplo completa, usá `npm run db:reset` con el servidor apagado.
@@ -58,7 +59,9 @@ Todo el acceso a datos está en `src/lib/db/*`: son funciones `async`, así que 
 3. Fotos: cambiar `src/lib/imagenes.ts` para que suba a Supabase Storage.
 4. Login (opcional): reemplazar `src/lib/auth.ts` por Supabase Auth.
 
-**Para publicar la web** hace falta un servidor con disco que no se borre (SQLite no funciona en Vercel), o pasar antes a Supabase.
+**Para publicar la web** de verdad hace falta un servidor con disco que no se borre, o pasar antes a Supabase.
+
+**En Vercel funciona como demo.** El disco es de solo lectura salvo `/tmp`, así que la app copia `demo/akuma.db` a `/tmp` y trabaja sobre esa copia. Se puede navegar la tienda y usar el panel, pero lo que cambies (ventas, productos, fotos) se pierde cuando Vercel reinicia el servidor, y cada servidor tiene su propia copia. En Vercel hay que cargar las variables `ADMIN_PASSWORD`, `ADMIN_SECRET` y `SITE_URL` en *Settings → Environment Variables*.
 
 ## Variables (`.env.local`)
 
