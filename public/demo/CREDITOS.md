@@ -14,7 +14,7 @@ Fotos de demostración con licencia Creative Commons (vía [Openverse](https://o
 | figura-goku-super-saiyan-20-cm.webp | [WonderCon 2015 - Goku figure](https://www.flickr.com/photos/28277470@N05/17048803251) | W10002 | BY-SA 2.0 |
 | buzo-oversize-dominio-expandido.webp | [Black hoodie](https://www.flickr.com/photos/72098626@N00/23073328050) | Ed Yourdon | BY-NC-SA 2.0 |
 | remera-estampa-tripulacion.webp | [Geek & Graphic T-Shirts](https://www.flickr.com/photos/95038349@N00/4629050026) | nclmar | BY-SA 2.0 |
-| buzo-oversize-akuma-negro.webp | [black hooded sweatshirt](https://www.flickr.com/photos/13951072@N00/2170165611) | bradleygee | BY 2.0 |
+| buzo-oversize-akuma-negro.webp | Ilustración generada para la tienda (buzo negro con kanji 悪魔 bordado) | Akuma Street | Propia |
 | remera-street-kanji-rojo.webp | [t-shirt wall](https://www.flickr.com/photos/35468136000@N01/2787511824) | Klara Kim | BY-NC-SA 2.0 |
 | hot-wheels-nissan-skyline-gt-r-r34.webp | [1:24 Diecast Car Collection](https://www.flickr.com/photos/9993075@N06/3986394328) | aresauburn™ | BY-SA 2.0 |
 | hot-wheels-toyota-supra.webp | [12. Toyota Supra](https://www.flickr.com/photos/42401822@N08/29021394763) | ericvilendrerphoto | BY-NC-SA 2.0 |
