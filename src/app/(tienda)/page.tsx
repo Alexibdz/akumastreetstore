@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
+import { CarruselOfertas } from "@/components/tienda/CarruselOfertas";
 import { FiltroSeries, type GrupoSerie } from "@/components/tienda/FiltroSeries";
-import { ImagenProducto } from "@/components/tienda/ImagenProducto";
 import { Navegacion } from "@/components/tienda/Navegacion";
 import { CATEGORIAS } from "@/lib/catalogo";
 import { obtenerConfiguracion } from "@/lib/db/configuracion";
@@ -27,7 +27,7 @@ export default async function Inicio() {
       };
     }),
   ];
-  const ofertas = productos.filter(enOferta).slice(0, 3).map(tarjeta);
+  const ofertas = productos.filter(enOferta).slice(0, 10).map(tarjeta);
 
   return (
     <main>
@@ -67,6 +67,8 @@ export default async function Inicio() {
       </section>
 
       <div className="mx-auto max-w-[1280px]">
+        {ofertas.length > 0 && <CarruselOfertas ofertas={ofertas} />}
+
         {/* Categorías */}
         <nav aria-label="Categorías" className="grid grid-cols-2 border-y border-line md:grid-cols-3">
           {CATEGORIAS.map((c) => (
@@ -82,40 +84,6 @@ export default async function Inicio() {
         </nav>
 
         {productos.length > 0 && <FiltroSeries grupos={grupos} />}
-
-        {/* Ofertas */}
-        {ofertas.length > 0 && (
-          <section
-            aria-labelledby="titulo-ofertas"
-            className="mx-[clamp(20px,4vw,48px)] my-12 grid border-2 border-red lg:grid-cols-[minmax(200px,260px)_minmax(0,1fr)]"
-          >
-            <div className="flex flex-col justify-between gap-6 bg-red p-9 text-white">
-              <div className="font-mono text-[13px] tracking-[.2em]">HASTA AGOTAR STOCK</div>
-              <h2 id="titulo-ofertas" className="font-display text-[56px] leading-[.95]">
-                OFER
-                <br />
-                TAS
-              </h2>
-              <Link href="/catalogo?ofertas=1" className="text-[15px] font-black hover:underline">
-                Ver todas →
-              </Link>
-            </div>
-            <div className="grid divide-y divide-offer-line sm:grid-cols-3 sm:divide-x sm:divide-y-0">
-              {ofertas.map((t) => (
-                <Link key={t.slug} href={`/producto/${t.slug}`} className="group flex flex-col gap-2.5 p-6">
-                  <ImagenProducto imagen={t.imagen} alt={t.nombre} placeholder={t.placeholder} badge={t.badge} formato="oferta" />
-                  <div className="text-base font-bold leading-[1.25] group-hover:text-red">{t.nombre}</div>
-                  {t.precio && (
-                    <div className="flex items-baseline gap-3 font-mono">
-                      <span className="text-base font-bold text-red">{t.precio}</span>
-                      {t.precioAnterior && <span className="text-[13px] text-muted line-through">{t.precioAnterior}</span>}
-                    </div>
-                  )}
-                </Link>
-              ))}
-            </div>
-          </section>
-        )}
       </div>
     </main>
   );

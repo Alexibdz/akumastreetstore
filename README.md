@@ -17,7 +17,7 @@ npm run dev
 
 | Página | Qué tiene |
 |---|---|
-| `/` | Hero, categorías, «Buscar por serie» y ofertas |
+| `/` | Hero, carrusel de ofertas, categorías y «Buscar por serie» |
 | `/catalogo?cat=ropa` | Grilla con filtros por categoría, serie y ofertas |
 | `/producto/<slug>` | Galería, precio, talles, estado de stock y botón «CONSULTAR POR WHATSAPP» |
 | `/como-comprar` | Los pasos para comprar |
